@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package example;
+
+service Calc {
+  rpc Solve (InputRequest) returns (OutputResponse) {}
+}
+
+message InputRequest {
+  string question = 1;
+}
+
+message OutputResponse {
+  int32 answer = 1;
+}

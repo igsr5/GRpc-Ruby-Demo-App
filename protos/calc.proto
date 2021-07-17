@@ -6,10 +6,28 @@ service Calc {
   rpc Solve (InputRequest) returns (OutputResponse) {}
 }
 
+service Greeting {
+  rpc Greet (GreetRequest) returns (GreetResponse) {}
+}
+
 message InputRequest {
   string question = 1;
 }
 
 message OutputResponse {
   int32 answer = 1;
+}
+
+message GreetRequest {
+  string name = 1;
+  enum Time {
+    MORNING = 0;
+    NOON = 1;
+    NIGHT = 2;
+  }
+  Time time = 2;
+}
+
+message GreetResponse {
+  string ans = 1;
 }

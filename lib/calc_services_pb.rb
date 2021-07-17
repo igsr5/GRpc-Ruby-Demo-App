@@ -2,7 +2,7 @@
 # Source: calc.proto for package 'example'
 
 require 'grpc'
-require 'calc_pb'
+require_relative 'calc_pb'
 
 module Example
   module Calc
@@ -15,6 +15,20 @@ module Example
       self.service_name = 'example.Calc'
 
       rpc :Solve, ::Example::InputRequest, ::Example::OutputResponse
+    end
+
+    Stub = Service.rpc_stub_class
+  end
+  module Greeting
+    class Service
+
+      include ::GRPC::GenericService
+
+      self.marshal_class_method = :encode
+      self.unmarshal_class_method = :decode
+      self.service_name = 'example.Greeting'
+
+      rpc :Greet, ::Example::GreetRequest, ::Example::GreetResponse
     end
 
     Stub = Service.rpc_stub_class

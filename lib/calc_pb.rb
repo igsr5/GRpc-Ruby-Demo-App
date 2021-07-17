@@ -11,10 +11,25 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "example.OutputResponse" do
       optional :answer, :int32, 1
     end
+    add_message "example.GreetRequest" do
+      optional :name, :string, 1
+      optional :time, :enum, 2, "example.GreetRequest.Time"
+    end
+    add_enum "example.GreetRequest.Time" do
+      value :MORNING, 0
+      value :NOON, 1
+      value :NIGHT, 2
+    end
+    add_message "example.GreetResponse" do
+      optional :ans, :string, 1
+    end
   end
 end
 
 module Example
   InputRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("example.InputRequest").msgclass
   OutputResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("example.OutputResponse").msgclass
+  GreetRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("example.GreetRequest").msgclass
+  GreetRequest::Time = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("example.GreetRequest.Time").enummodule
+  GreetResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("example.GreetResponse").msgclass
 end
